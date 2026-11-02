@@ -32,6 +32,7 @@ The interactive web map that uses these layers lives in a separate repository: [
 HH and HV backscatter in dB. The original 10 m data are averaged to 30 m in linear power. HV (cross-pol) responds to leafy and woody vegetation. HH (co-pol) responds to soil moisture, roughness and flooding.
 - `backscatter_by_month/`: **September 2026** (4 passes) and **October 2026** (3 dates, 7 frames). Each covers 100% of both provinces. Every pass in the month is averaged in power. June 2026 is left out because it is a single pass covering about a third of the area.
 - `backscatter_by_date/`: each acquisition date: 28 Jun, 20/23/25/30 Sep, 14/17/19 Oct 2026. Overlapping frames on the same date are averaged.
+- `change_by_month/`: **September → October 2026** change in dB, for HH and HV. Each value is the per-pixel average of every same-track Sep→Oct pair: 5 pairs for HH (covers 99.9%, median +0.46 dB) and 3 pairs for HV (covers 87%, median +0.34 dB).
 - `change_same_track/`: 11 pairs of passes on the **same orbit track and frame**, so the viewing geometry is identical. The value is the later pass minus the earlier one, in dB. The 3 km nearest each frame edge is removed.
   - 28 Jun → 20 Sep: HH median −0.55 dB (drying).
   - 20–25 Sep → 14–19 Oct: HH up to +1.05 dB (rain returned).
