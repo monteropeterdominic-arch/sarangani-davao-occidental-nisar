@@ -30,8 +30,8 @@ The interactive web map that uses these layers lives in a separate repository: [
 
 ### `nisar/`: NISAR L2 GCOV radar (NASA–ISRO, provisional)
 HH and HV backscatter in dB. The original 10 m data are averaged to 30 m in linear power. HV (cross-pol) responds to leafy and woody vegetation. HH (co-pol) responds to soil moisture, roughness and flooding.
-- `backscatter_by_month/`: **September 2026** (4 passes) and **October 2026** (3 dates, 7 frames). Each covers 100% of both provinces. Every pass in the month is averaged in power. June 2026 is left out because it is a single pass covering about a third of the area.
-- `backscatter_by_date/`: each acquisition date: 28 Jun, 20/23/25/30 Sep, 14/17/19 Oct 2026. Overlapping frames on the same date are averaged.
+- `backscatter_by_month/`: **September 2026** (4 passes) and **October 2026** (3 dates, 7 frames). Each covers 100% of both provinces. Every pass in the month is averaged in power. June 2026 is left out because only one June pass has been downloaded so far (28 June, track 39, about a third of the area). ASF lists four June passes over the area: 19 Jun (track 75), 21 Jun (111), 26 Jun (3) and 28 Jun (39).
+- `backscatter_by_date/`: the **8 dates downloaded so far**, out of the 38 that ASF lists over the area up to 19 October: 28 Jun, 20/23/25/30 Sep, 14/17/19 Oct 2026. Each file merges every track and frame flown that day (frames on the same date are averaged), so these are not yet one file per track. HH coverage of the two provinces ranges from 19% (30 Sep) to 89% (23 Sep and 17 Oct). Per track, the downloads are: track 39 – 3 dates (28 Jun, 20 Sep, 14 Oct), track 75 – 2, track 111 – 2, track 3 – 1.
 - `change_by_month/`: **September → October 2026** change in dB, for HH and HV. Each value is the per-pixel average of every same-track Sep→Oct pair: 5 pairs for HH (covers 99.9%, median +0.46 dB) and 3 pairs for HV (covers 87%, median +0.34 dB).
 - `change_same_track/`: 11 pairs of passes on the **same orbit track and frame**, so the viewing geometry is identical. The value is the later pass minus the earlier one, in dB. The 3 km nearest each frame edge is removed.
   - 28 Jun → 20 Sep: HH median −0.55 dB (drying).
@@ -86,7 +86,7 @@ The scenario assumes a strong El Niño (ONI +2.5 °C, range +2.0 to +3.0), as NO
 - `scripts/`: the PyQGIS/GDAL/scikit-learn scripts that produced everything here. Paths point to the original working folder.
 
 ## Limits
-- NISAR's first scene here is 28 June, after the earthquake. Radar backscatter shows the months that followed, not the quake itself. Ground uplift needs NISAR interferometry (GUNW) spanning 8 June.
+- No public NISAR data over the area covers the time before the quake yet: the earliest pass is 19 June, and ASF is still adding older NISAR data through the end of 2026. So NISAR backscatter shows the months after the quake, not the quake itself. Ground uplift from the quake needs Sentinel-1 interferometry spanning 8 June (for example path 69, 4 → 16 June, Sentinel-1D on both dates).
 - About 30% of the area could not be checked for landslides, because every Landsat view in one of the windows was cloudy.
 - The radar → vegetation estimates explain about a third of the variance. Use them for broad patterns, not field-level values.
 
