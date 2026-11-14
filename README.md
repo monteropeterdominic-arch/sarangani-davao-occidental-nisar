@@ -57,6 +57,13 @@ The event: 7:37 am PHT, epicentre 5.60°N 125.06°E, about 32 km south of Maasim
 - `Possible_landslides_after_8Jun2026_ranked.csv`: 152 clusters ranked by area, with nearest place names.
 - Not field-checked. Heavy rain or land clearing can look like a slide.
 
+### `sentinel1_quake/`: Sentinel-1 radar and Sentinel-2 coast check over the quake
+Seven Sentinel-1 interferometry pairs (two tracks, with pre-quake controls) and a tide-matched Sentinel-2 check of three coasts. See [its README](sentinel1_quake/README.md).
+- The coastal uplift **can't be measured**: no reliable radar data on the coast near the epicentre, and no visible reef uplift in the tide-matched images.
+- The General Santos–Maasim signal is atmosphere: control pairs from before the quake change as much.
+- Coherence dropped along the Glan coast in both viewing directions.
+- On the optical landslide spots, Sentinel-1 coherence was already at the noise level before the quake. NISAR flagged the same spots as changed land 2.3 times as often as other steep land (27.9% vs 11.9%).
+
 ### `landsat_hls/`: Landsat HLS L30 v2.0, quarterly medians 2025 Q1 – 2026 Q3
 EVI, NDMI (plant moisture) and NDWI (surface water), plus 2026-minus-2025 anomalies. `ValidObs` gives the number of clear views per pixel.
 
@@ -86,9 +93,9 @@ The scenario assumes a strong El Niño (ONI +2.5 °C, range +2.0 to +3.0), as NO
 - `scripts/`: the PyQGIS/GDAL/scikit-learn scripts that produced everything here. Paths point to the original working folder.
 
 ## Limits
-- No public NISAR data over the area covers the time before the quake yet: the earliest pass is 19 June, and ASF is still adding older NISAR data through the end of 2026. So NISAR backscatter shows the months after the quake, not the quake itself. Ground uplift from the quake needs Sentinel-1 interferometry spanning 8 June (for example path 69, 4 → 16 June, Sentinel-1D on both dates).
+- No public NISAR data over the area covers the time before the quake yet: the earliest pass is 19 June, and ASF is still adding older NISAR data through the end of 2026. So NISAR backscatter shows the months after the quake, not the quake itself. Sentinel-1 interferometry spanning 8 June was tried (`sentinel1_quake/`), but it could not measure the coastal uplift.
 - About 30% of the area could not be checked for landslides, because every Landsat view in one of the windows was cloudy.
 - The radar → vegetation estimates explain about a third of the variance. Use them for broad patterns, not field-level values.
 
 ## Sources
-NASA/ISRO NISAR L2 GCOV (provisional) · NASA HLS L30 v2.0 · MODIS MOD13Q1 and MOD11A2 v6.1 (via AppEEARS) · GPM IMERG V07 (via GIOVANNI) · NASA SRTMGL1 · NOAA CPC Oceanic Niño Index and ENSO discussion (8 Oct 2026) · IRI ENSO forecast · PHIVOLCS, USGS, NDRRMC and PhilSA reports on the 8 June 2026 earthquake · 2020 regional land cover (NAMRIA).
+NASA/ISRO NISAR L2 GCOV (provisional) · NASA HLS L30 v2.0 · MODIS MOD13Q1 and MOD11A2 v6.1 (via AppEEARS) · GPM IMERG V07 (via GIOVANNI) · NASA SRTMGL1 · NOAA CPC Oceanic Niño Index and ENSO discussion (8 Oct 2026) · IRI ENSO forecast · Copernicus Sentinel-1 (ASF DAAC, HyP3) and Sentinel-2 (Element 84 Earth Search): "Contains modified Copernicus Sentinel data 2024–2026, processed by ASF DAAC HyP3 2026" · PHIVOLCS, USGS, NDRRMC and PhilSA reports on the 8 June 2026 earthquake · 2020 regional land cover (NAMRIA).
